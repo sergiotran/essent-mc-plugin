@@ -1,7 +1,5 @@
 package toolkiz.sergio.models;
 
-import java.util.Date;
-
 public class Member {
     final String name;
     final int money;
