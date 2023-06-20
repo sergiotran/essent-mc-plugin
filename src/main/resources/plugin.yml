@@ -1,0 +1,20 @@
+name: Essent
+version: '${project.version}'
+main: toolkiz.sergio.Essent
+api-version: '1.20'
+authors: [Duc Tran]
+description: Suc cac cheo plugin
+website: dambuoi.fun
+commands:
+  home:
+    description: Dịch chuyển về nhà
+    usage: /home
+    aliases: [home, nha, venha]
+    permission: home
+    permission-message: Bạn chưa được cấp quyền cho lệnh này
+  sethome:
+    description: Đặt nơi đang đứng làm nhà
+    usage: /sethome
+    aliases: [setnha]
+    permission: sethome
+    permission-message: Bạn chưa được cấp quyền cho lệnh này
