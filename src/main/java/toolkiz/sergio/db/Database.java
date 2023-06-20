@@ -28,7 +28,7 @@ public class Database {
         try {
             Statement statement = this.getConnection().createStatement();
 
-            statement.execute("CREATE DATABASE IF NOT EXISTS sergio;");
+            statement.execute("CREATE DATABASE IF NOT EXISTS sergio CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
 
             System.out.println("Initialized");
         } catch ( SQLException e) {

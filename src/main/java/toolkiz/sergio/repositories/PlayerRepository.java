@@ -11,14 +11,13 @@ import java.util.List;
 public class PlayerRepository {
     private Statement statement;
 
-    public PlayerRepository(Statement statement) {
-        this.statement = statement;
+    public PlayerRepository() {
         this.init();
     }
     private void init() {
         try {
             this.statement = new Database().getConnection().createStatement();
-            this.statement.execute("CREATE TABLE IF NOT EXISTS member(name varchar(255) NOT NULL, money INT default 0);");
+            this.statement.execute("CREATE TABLE IF NOT EXISTS member(name varchar(255) primary key NOT NULL, money INT default 0);");
         } catch (SQLException e) {
             e.printStackTrace();
         }

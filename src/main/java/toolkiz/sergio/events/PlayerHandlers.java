@@ -11,17 +11,12 @@ import org.bukkit.potion.PotionEffect;
 import toolkiz.sergio.Essent;
 import toolkiz.sergio.db.Database;
 import toolkiz.sergio.repositories.PlayerRepository;
-import java.sql.SQLException;
 
 public class PlayerHandlers implements Listener {
     private final PlayerRepository repository;
     public PlayerHandlers(Essent plugin, Database database) {
-        try {
-            repository = new PlayerRepository(database.getConnection().createStatement());
-            Bukkit.getPluginManager().registerEvents(this, plugin);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        repository = new PlayerRepository();
+        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler

@@ -1,5 +1,6 @@
 package toolkiz.sergio.commands.home;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,8 +15,7 @@ public class HomeCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-
-        player.sendMessage("Đã quay về nhà");
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&2Đẽ wey zìa nhè"));
 
         return true;
     }
