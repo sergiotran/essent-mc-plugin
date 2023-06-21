@@ -10,19 +10,19 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import toolkiz.sergio.Essent;
 import toolkiz.sergio.db.Database;
-import toolkiz.sergio.repositories.PlayerRepository;
+import toolkiz.sergio.repositories.MemberRepository;
 
 public class PlayerHandlers implements Listener {
-    private final PlayerRepository repository;
+    private MemberRepository memberRepository;
     public PlayerHandlers(Essent plugin, Database database) {
-        repository = new PlayerRepository();
+        this.memberRepository = new MemberRepository(database);
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
     public void onPlayerMovement(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        boolean isServerMember = repository.isServerMember(player.getName());
+        boolean isServerMember = memberRepository.isServerMember(player.getName());
 
         player.setFlySpeed(isServerMember ? 0.2f : 0);
         player.setWalkSpeed(isServerMember ? 0.2f : 0);
@@ -31,7 +31,7 @@ public class PlayerHandlers implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if(repository.isServerMember(player.getName())) {
+        if(memberRepository.isServerMember(player.getName())) {
             clearPlayerPotionEffect(player);
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&2&lChào sục viên &f&l" + player.getName()));
         } else {

@@ -7,11 +7,16 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toolkiz.sergio.db.Database;
 import toolkiz.sergio.repositories.HomeRepository;
 
 import java.sql.SQLException;
 
 public class SetHomeCommand implements CommandExecutor {
+    private HomeRepository homeRepository;
+    public SetHomeCommand(Database database) {
+        this.homeRepository = new HomeRepository(database);
+    }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String [] args) {
         if(!(sender instanceof Player)) {
@@ -20,7 +25,6 @@ public class SetHomeCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        HomeRepository homeRepository = new HomeRepository();
 
         if ( args.length < 1 ) {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3- - - - - - - - - - - - - - - - - -"));
@@ -38,7 +42,8 @@ public class SetHomeCommand implements CommandExecutor {
             homeRepository.setHome(player, x + " " + y + " " + z, args[0]);
             player.sendMessage("Đã set nơi này làm nhà");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Unable to set home");
+            e.printStackTrace();
         }
 
         return true;

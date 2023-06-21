@@ -8,15 +8,30 @@ public class Home {
     final String coordinate;
     final String owner;
 
-    public Home(String name,double x, double y , double z, String owner) {
-        List<String> list = Arrays.asList(Double.toString(x), Double.toString(y), Double.toString(z));
-
+    public Home(String name, String coordinate , String owner) {
         this.name = name;
-        this.coordinate = String.join(" ", list);
+        this.coordinate = coordinate;
         this.owner = owner;
     }
 
     public String[] getCoordinate() {
         return this.coordinate.split(" ");
+    }
+    public String getName() {
+        return this.name;
+    }
+    public String getOwnerName() {
+        return this.owner;
+    }
+
+    public double[] toDoubleArray() {
+        double[] coorinates = new double[3];
+        String[] splittedCoordinates = this.coordinate.split(" ");
+
+        for(int i = 0; i < 3; i ++) {
+            coorinates[i] = Double.parseDouble(splittedCoordinates[i]);
+        }
+
+        return coorinates;
     }
 }
